@@ -1,0 +1,54 @@
+Base de Datos MySQL
+
+Tablas
+
+    ->Ingresos
+        ->ID Integer - Key
+        ->Concepto String
+        ->Monto Integer
+        ->Fecha
+        ->Tipo(ingreso)ID_Tipo
+    ->Egresos
+        ->ID Integer - Key
+        ->Concepto String
+        ->Monto Integer
+        ->Fecha
+        ->Tipo(ingreso)ID_Tipo 
+
+    ->Tipo (solo hay 2- Ingreso y Egreso)
+        ->ID
+        ->Tipo_Movimiento
+
+    ->Usuarios
+        ->Usuario / Mails
+        ->Password 
+        ->ValidarPassword
+
+
+Diseño de la página
+    ->Iniciar página Login
+        ->Una vez autenticado redirigir al Dashboard
+
+
+
+        <H1> Saldo </h1>
+
+        <Form> 
+        
+            <input type='text'> Concepto
+
+            <input type='number'> Monto
+
+            <input type='date'> Fecha
+
+            <Select> Ingreso o Egreso
+        
+        </Form>
+
+        <ul id='ingresos'>
+
+        </ul>
+
+        <ul id='egresps'>
+
+        </ul>
