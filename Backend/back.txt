@@ -2,27 +2,33 @@ Base de Datos MySQL
 
 Tablas
 
-    ->Ingresos
+    ->Movimientos
         ->ID Integer - Key
         ->Concepto String
         ->Monto Integer
         ->Fecha
-        ->Tipo(ingreso)ID_Tipo
-    ->Egresos
-        ->ID Integer - Key
-        ->Concepto String
-        ->Monto Integer
-        ->Fecha
-        ->Tipo(ingreso)ID_Tipo 
-
-    ->Tipo (solo hay 2- Ingreso y Egreso)
-        ->ID
-        ->Tipo_Movimiento
-
+        ->Tipo
+        ->usuario_ID
+    -> Post - Cargar en la tabla todos los datos obligatoriamente
+    -> Get - Buscar todos los movimientos para mostrarlos en un cuadro. 
+    -> Delete - Eliminar de la tabla la fila del movimiento. 
+    -> Put - Modificar el Concepto y el monto del movimiento pero no el Tipo
+     
     ->Usuarios
         ->Usuario / Mails
         ->Password 
         ->ValidarPassword
+    ->Post - crear un usuario
+    
+    Crear pagina de registro y login - autenticacion
+
+
+mvc
+->Model ->hace las consultas a la base de datos
+->view -> son la representacion de la informacion del sistema responde a sus clientes
+->Controller -> Ruteo, conexión con el exterior, validación primaria de datos
+->Service -> Lógica de negocio, conexión con el model
+
 
 
 Diseño de la página
