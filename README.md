@@ -43,6 +43,8 @@ La aplicación deberá contener:
 ● Desde el listado, se debe poder modificar o eliminar una operación registrada
 previamente. No debe ser posible modificar el tipo de operación (ingreso o
 egreso) una vez creada.
+
+
 Bonus
 De forma adicional, puede
 Autenticación de usuarios
