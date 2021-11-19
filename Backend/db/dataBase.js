@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     database:'alkemi_presupuestopersonal'
 })
 
-connection.connect((eror) => {
+connection.connect((error) => {
     if(error) {
         throw console.error;
     }
