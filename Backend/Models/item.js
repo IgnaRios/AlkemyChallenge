@@ -1,12 +1,11 @@
-const qy = requiere('../DB/dataBase')
-
+const qy = require('../DB/dataBase')
 
 module.exports = {
 
     postItem : async function(item) {
-        const query = 'INSERT INTO movimientos (Concept, Amount, Date, type, usuario_ID) Values (?, ?, ?, ?, ?)';
-        const result = await qy(query, [item.concept, item.amount, item.date, item.type, item.usuarioID]);
-        return result.insertId;
+        const query = 'INSERT INTO movimientos (concept, amount, date, type, userID) Values (?, ?, ?, ?, ?)';
+        const result = await qy(query, [item.concept, item.amount, item.date, item.type, item.user]);
+        return result;
     },
     
     getItems : async function() {
@@ -22,7 +21,7 @@ module.exports = {
     },
     
     deleteItem : async function (id) {
-        const query = 'SELECT * FROM movimientos WHERE id = ?';
+        const query = 'DELETE  FROM movimientos WHERE id = ?';
         const itemDeleted = await qy(query, [id]);
         return itemDeleted.affectedRows;
     }

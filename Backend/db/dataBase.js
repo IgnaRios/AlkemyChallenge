@@ -11,7 +11,9 @@ connection.connect((error) => {
     if(error) {
         throw console.error;
     }
-    console.log('DataBase Connected')
+    console.log('connection with database established');
 })
 
-export const qy = util.promisify(connection.query).bind(connection);
+const qy = util.promisify(connection.query).bind(connection);
+
+module.exports = qy;
