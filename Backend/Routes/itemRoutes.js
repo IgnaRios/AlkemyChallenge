@@ -6,4 +6,4 @@ const controller = require('../Controllers/itemController');
 router.post('/', controller.guardarItem);
 
 
-module.exports = { router };
+module.exports = router ;
