@@ -1,6 +1,6 @@
-const {postItem, getItems, putItem, deleteItem} = require('../Models/item');
+const {postItem, getItems, getItemsByID, putItem, deleteItem} = require('../Models/item');
 
-const guardarItem = async (req, res, next) =>{
+const guardarItem = async (req, res) =>{
     try{
         const item = {
             concept : req.body.concept.toUpperCase(),
@@ -37,7 +37,42 @@ const guardarItem = async (req, res, next) =>{
     };
 };
 
+const itemList = async (req, res) =>{
+    
+   try{ 
+        const list = await getItems();
+
+        if(list.length == 0 ){
+            throw new Error ('No tenés movimientos cargados todavía')
+        }
+        
+        res.status(200).send({list})
+    }
+    catch(error){
+        console.error(error.message)
+        res.status(413).send({'Error': error.message})
+    };
+};
+
+const item = async (req, res) =>{
+    
+    try{ 
+        const id = req.params.id
+
+        const itemId = await getItemsByID(id);
+
+        res.status(200).send({'Item' : itemId})
+
+        
+     }
+     catch(error){
+         console.error(error.message)
+         res.status(413).send({'Error': error.message})
+     };
+ };
 
 module.exports = {
-    guardarItem
+    guardarItem, 
+    itemList,
+    item
 }
