@@ -20,9 +20,9 @@ module.exports = {
         return itemId;        
     },
 
-    putItem : async function(id, concept, amount, date, usuarioID) {
-        const query = 'UPDATE movimientos SET Concept = ?, Amount = ?, Date = ?, usuario_ID = ? WHERE id = ?';
-        const itemModificado = await qy(query, [concept, amount, date, usuarioID, id]);
+    putItem : async function(id, item) {
+        const query = 'UPDATE movimientos SET concept = ?, amount = ?, date = ?, userID = ? WHERE id = ?';
+        const itemModificado = await qy(query, [item.concept, item.amount, item.date, item.user, id]);
         return itemModificado;
     },
     
