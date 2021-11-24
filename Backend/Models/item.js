@@ -26,7 +26,7 @@ module.exports = {
         return itemModificado;
     },
     
-    deleteItem : async function (id) {
+    deletedItem : async function (id) {
         const query = 'DELETE  FROM movimientos WHERE id = ?';
         const itemDeleted = await qy(query, [id]);
         return itemDeleted.affectedRows;

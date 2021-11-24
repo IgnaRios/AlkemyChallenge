@@ -8,5 +8,7 @@ router.post('/', controller.guardarItem);
 router.get('/', controller.itemList);
 router.get('/:id', controller.item);
 router.put('/:id', controller.modifyItem);
+router.delete('/:id', controller.deleteItem);
+
 
 module.exports = router ;
