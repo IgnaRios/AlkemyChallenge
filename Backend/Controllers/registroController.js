@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
-//const { getUserByAlias, getUserByUser } = require('../Models/usuario');
+
+const { getUserByAlias, getUserByUser } = require('../Models/usuario');
 const { postRegistro } = require('../Models/registro');
 
 
@@ -25,7 +25,7 @@ const regitrationController =  async (req, res) => {
         if(!mailRegex.test(user.user)){
             throw new Error('El mail es inválido')
         };
-        /*
+        
         let consulta = await getUserByUser(user.user);
 
         if(consulta.length > 0) {{
@@ -37,7 +37,7 @@ const regitrationController =  async (req, res) => {
         if(consulta.length > 0) {{
             throw new Error('Ese alias ya se encuentra registrado')
         }};
-        */
+        
 
         const registro = await postRegistro(user);
         

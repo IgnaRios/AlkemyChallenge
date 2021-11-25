@@ -1,7 +1,7 @@
 const { getAllUsers, getUserByID } = require('../Models/usuario');
 
 
-const userList = async (req, res, next) =>{
+const userList = async (req, res) =>{
     try{
         
     }
