@@ -15,11 +15,11 @@ const guardarItem = async (req, res) =>{
         };
 
         if(!/^[a-z ]+$/gi.test(item.concept)){
-            throw new Error('Simbols and numbers not allowed');
+            throw new Error('Símbolos y números no permitidos');
         };
 
         if(!Number(item.amount)){
-            throw new Error('Amout must be a number');
+            throw new Error('El monto ingresado no es un número');
         };
 
         if(!Number(item.user)){   // probar con nombre más que con el N° de ID del usuario
@@ -100,11 +100,11 @@ const modifyItem = async (req, res) => {
         };
 
         if(!/^[a-z ]+$/gi.test(item.concept)){
-            throw new Error('Simbols and numbers not allowed');
+            throw new Error('Símbolos y números no permitidos');
         };
 
         if(!Number(item.amount)){
-            throw new Error('Amout must be a number');
+            throw new Error('El monto ingresado no es un número');
         };
 
         if(!Number(item.user)){   // probar con nombre más que con el N° de ID del usuario
