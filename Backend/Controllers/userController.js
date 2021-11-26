@@ -1,4 +1,4 @@
-const { getAllUsers, getUserByID } = require('../Models/usuario');
+const { getAllUsers, getUserByID, getUserByUser, getUserByAlias } = require('../Models/usuario');
 
 
 const controllerUserList = async (req, res) =>{
@@ -38,9 +38,49 @@ const controllerUserByID = async (req, res) =>{
 
 };
 
+const controllerUserByAlias = async (req, res) =>{
+    try{
+
+        const alias = req.body.alias;
+
+        const user = await getUserByAlias(alias);
+
+        if(user.length == 0) {
+            throw new Error ('No hay usuarios registrados con el alias ingresado');
+        };
+
+        res.status(200).send({'Usuario ': user})
+    }
+    catch(error){
+        console.error(error.message);
+        res.status(413).send({'Error': error.message})
+    };
+
+};
+
+const controllerUserByUser = async (req, res) =>{
+    try{
+
+        const user = req.body.usuario;
+
+        const userByMail = await getUserByUser(user);
+
+        if(userByMail.length == 0) {
+            throw new Error ('No hay usuarios registrados con ese mail');
+        };
+
+        res.status(200).send({'Usuario ': userByMail})
+    }
+    catch(error){
+        console.error(error.message);
+        res.status(413).send({'Error': error.message})
+    };
+
+};
 
 module.exports = {
     controllerUserList,
     controllerUserByID,
-
+    controllerUserByAlias,
+    controllerUserByUser
 }
