@@ -5,7 +5,7 @@ module.exports = {
     postItem : async function(item) {
         const query = 'INSERT INTO movimientos (concept, amount, date, type, userID) Values (?, ?, ?, ?, ?)';
         const result = await qy(query, [item.concept, item.amount, item.date, item.type, item.user]);
-        return result;
+        return result.insertId;
     },
     
     getItems : async function() {
