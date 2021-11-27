@@ -27,7 +27,7 @@ const controllerLogin = async (req, res ) => {
         if(!bcrypt.compareSync(consulta.password, user.password)){
             throw new Error('Usuario y/o contraseña incorrectos');
         };
-        /*
+        
         const tokenData = {
             user: consulta.usuario,
             alias : consulta.alias,
@@ -35,8 +35,8 @@ const controllerLogin = async (req, res ) => {
         };
 
         console.log(tokenData);
-        */
-        const token = jwt.sign(consulta, 'Secret', {
+        
+        const token = jwt.sign(tokenData, 'Secret', {
             expiresIn: 60 * 60 * 24 
         });
 
