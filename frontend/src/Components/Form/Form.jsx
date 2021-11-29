@@ -43,6 +43,11 @@ const Formulario =  () => {
         catch(error){
             console.error({'Error': error.mesagge})
         }
+        setConcept('');
+        //setAmount('');
+        //setDate('');
+        //setType('');
+        //setUser('');
     };
 
     return(

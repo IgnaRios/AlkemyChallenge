@@ -46,7 +46,7 @@ const itemList = async (req, res) =>{
             throw new Error ('No tenés movimientos cargados todavía');
         };
         
-        res.status(200).send({list});
+        res.status(200).send({'Listado':list});
     }
     catch(error){
         console.error(error.message);
