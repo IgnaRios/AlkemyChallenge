@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from "react";
 import axios from 'axios';
 import {ListGroup, Button, Row, Col, Container} from 'react-bootstrap';
+
 const BASE_URL = 'http://localhost:8000';
 const endpoint = 'item';
 
@@ -9,28 +10,48 @@ const EntryList = () => {
     const [list, setList] = useState([]);
     
     useEffect(()=>{
-        async function fetchData (){
-        const allEntrys = await axios.get(`${BASE_URL}/${endpoint}`);
+        getAllItems();
         
-        if(allEntrys.status === 200) {
-            setList([allEntrys.data.Listado])
+    },[]);
+    
+    const getAllItems = async () => {
+        try{
+            const allEntrys = await axios.get(`${BASE_URL}/${endpoint}`);
+            
+            const entry = allEntrys.data.Listado;
+            
+            const allEntrysOrdered = entry.sort(
+                function(a, b){
+                    if(a.date > b.date){
+                        return -1
+                    }
+                    if(a.date < b.date){
+                        return 1
+                    }
+                    return 0
+                }
+            );
+            
+            const itemsFiltered = allEntrysOrdered.slice(0 , 10)
+                console.log(itemsFiltered)
+            if(allEntrys.status === 200) {
+                setList(itemsFiltered);
+            };
+        }
+        catch(error){
+        console.error(error);
         };
     };
-    fetchData();
-    },[list]);
     
-    //console.log(list)
 
     const handleDelete = async (e) =>{
         e.preventDefault();
         try{
-            const itemID = e.target.attributes[0];
-            console.log(itemID)
-            const deleteItem = await axios.delete(`${BASE_URL}/${endpoint})/${itemID}`);
+            const itemID = e.target.attributes[0].value;
+            
+            const deleteItem = await axios.delete(`${BASE_URL}/${endpoint}/${itemID}`);
 
-            if(deleteItem.status === 200){
-
-            }
+            getAllItems();
         }
         catch(error){
             console.error(error.data.message);
@@ -39,11 +60,12 @@ const EntryList = () => {
     };
 
     const EntryList = () => {
+        
         return(
-            <ListGroup as='ul'>
-                {list.map((item)=>(
-                    <ListGroup.Item as='li' key={item.ID}>
-                        <Row className='text-center' key={item.ID}>
+            <ListGroup as='ul' className='mt-3' >
+                {list.map((item, index)=>(
+                    <ListGroup.Item as='li' key={index}>
+                        <Row className='text-center'>
                             <Col>
                                 {item.concept}
                             </Col>

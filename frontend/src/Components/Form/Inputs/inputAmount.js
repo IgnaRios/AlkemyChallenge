@@ -8,7 +8,7 @@ const InputAmount = ({amount, setAmount}) =>{
     };
         
     return(
-        <Col md={2}>
+        <Col md={3}>
             <FloatingLabel controlId="floatingInputAmount" label="Amount">
                 <Form.Control 
                 type="number" 

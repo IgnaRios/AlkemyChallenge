@@ -8,7 +8,7 @@ const InputConcept = ({concept, setConcept}) => {
     };
     
     return (
-        <Col md={2}>
+        <Col md className='mb-3'>
             <FloatingLabel controlId="floatingInputConcept" label="Concept">
                 <Form.Control 
                     type="text" 

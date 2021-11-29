@@ -39,34 +39,32 @@ const Formulario =  () => {
                 console.log(addItem.data)
                 //setMensaje({ addItem.data});
             };
+        
         }
         catch(error){
-            console.error({'Error': error.mesagge})
+            console.error({'Error' :error.response.data.Error})
         }
-        setConcept('');
-        //setAmount('');
-        //setDate('');
-        //setType('');
-        //setUser('');
+
     };
 
     return(
         <Container>
-            <Form>
+            <Form >
                 <Row>
                     <InputConcept concept={concept} setConcept={setConcept} />
+                </Row>
+                <Row>
                     <InputAmount amount={amount} setAmount={setAmount}  />
                     <InputDate date={date} setDate={setDate} />
                     <InputSelectType type={type} setType={setType} />
                     <InputSelectUser user={user} setUser={setUser} />
 
-                    <Col md={2}>
+                    <Col md={2} className='mt-1' >
                         <Button variant="primary" size='lg' type="submit" onClick={submitHandler}>
                             Submit
                         </Button>
                     </Col>
-
-                </ Row>
+                </Row>
                 {/*<Row className='justify-content-center'>
                     <Col md={4}>
                         <Mensaje />

@@ -9,7 +9,7 @@ const InputDate = ({date, setDate}) =>{
     };
 
     return(
-        <Col md={2}>
+        <Col md={3}>
             <FloatingLabel controlId="floatingInputDate" label="Date">
                 <Form.Control 
                     type="date" 
