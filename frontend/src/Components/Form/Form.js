@@ -10,14 +10,13 @@ import InputSelectUser from './Inputs/inputSelectUser';
 const BASE_URL = 'http://localhost:8000';
 const endpoint = 'item';
 
-const Formulario =  () => {
+const Formulario =  ({fetching, setFetching}) => {
 
     const [concept, setConcept] = useState('');
     const [amount, setAmount]= useState('');    
     const [date, setDate] = useState('');
     const [type, setType] = useState('');
     const [user, setUser]= useState('');
-    //const [mensaje, setMensaje]=useState({});
 
     const item = {
         concept: concept,
@@ -26,19 +25,18 @@ const Formulario =  () => {
         type: type,
         userID: user
     };
-
-    //console.log(item);
     
     const submitHandler = async (e) =>{
         e.preventDefault();
 
-        try{  
+        try{ 
+            setFetching(true); 
             const addItem = await axios.post(`${BASE_URL}/${endpoint}`, item)
             
             if(addItem.status === 200){
-                console.log(addItem.data)
-                //setMensaje({ addItem.data});
+               // console.log(addItem.data)
             };
+            setFetching(false)
         
         }
         catch(error){
@@ -58,18 +56,12 @@ const Formulario =  () => {
                     <InputDate date={date} setDate={setDate} />
                     <InputSelectType type={type} setType={setType} />
                     <InputSelectUser user={user} setUser={setUser} />
-
                     <Col md={2} className='mt-1' >
                         <Button variant="primary" size='lg' type="submit" onClick={submitHandler}>
                             Submit
                         </Button>
                     </Col>
                 </Row>
-                {/*<Row className='justify-content-center'>
-                    <Col md={4}>
-                        <Mensaje />
-                    </ Col>
-                </Row>*/}
             </Form>
         </Container>
     );

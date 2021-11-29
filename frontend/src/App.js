@@ -6,13 +6,20 @@ import './App.css';
 
 function App() {
 
-  const [change, setChange] = useState(false);
+  const [ fetching, setFetching] = useState(false);
 
   return (
     <>
-      <Header />
-      <Form/>
-      <EntryList />
+      <Header 
+        fetching={setFetching} 
+        setFetching={setFetching}
+      />
+      <Form fetching={setFetching} setFetching={setFetching}/>
+      
+      <EntryList 
+        fetching={setFetching} 
+        setFetching={setFetching}
+      />
     </>
   );
 }

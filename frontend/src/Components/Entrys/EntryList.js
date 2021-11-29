@@ -5,14 +5,14 @@ import {ListGroup, Button, Row, Col, Container} from 'react-bootstrap';
 const BASE_URL = 'http://localhost:8000';
 const endpoint = 'item';
 
-const EntryList = () => {
+const EntryList = ({fetching}) => {
     
     const [list, setList] = useState([]);
     
     useEffect(()=>{
         getAllItems();
         
-    },[]);
+    },[fetching]);
     
     const getAllItems = async () => {
         try{
@@ -33,7 +33,7 @@ const EntryList = () => {
             );
             
             const itemsFiltered = allEntrysOrdered.slice(0 , 10)
-                console.log(itemsFiltered)
+               
             if(allEntrys.status === 200) {
                 setList(itemsFiltered);
             };
