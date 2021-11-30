@@ -20,7 +20,7 @@ const EntryList = ({fetching}) => {
             
             const entry = allEntrys.data.Listado;
             
-            const allEntrysOrdered = entry.sort(
+            const allEntrysOrdered = entry.sort( //ordenar la lista del último agregado al primero
                 function(a, b){
                     if(a.date > b.date){
                         return -1
@@ -32,7 +32,7 @@ const EntryList = ({fetching}) => {
                 }
             );
             
-            const itemsFiltered = allEntrysOrdered.slice(0 , 10)
+            const itemsFiltered = allEntrysOrdered.slice(0 , 10) // mostrar los últimos 10 movimientos
                
             if(allEntrys.status === 200) {
                 setList(itemsFiltered);
@@ -51,7 +51,7 @@ const EntryList = ({fetching}) => {
             
             const deleteItem = await axios.delete(`${BASE_URL}/${endpoint}/${itemID}`);
 
-            getAllItems();
+            getAllItems(); // llamo la función para volver a cargar los movimientos
         }
         catch(error){
             console.error(error.data.message);

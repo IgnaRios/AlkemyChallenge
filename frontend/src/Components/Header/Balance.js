@@ -11,40 +11,47 @@ const Balance = ({fetching}) => {
     
     useEffect(()=>{
         getItems();
-        setCurrentBalance();        
+        
     },[fetching]);
 
 
     const getItems = async () =>{
+
         const items = await axios.get(`${BASE_URL}/${endpoint}`);
         
         const allItems = items.data.Listado
 
-        function filterItemIncome (item){
+        function filterItemIncome (item){  // listo todos los movimientos 'Income'
             if(item.type === 'Income'){
                 return true
             }
             return false
         }
 
-        function filterItemExpenses (item){
+        function filterItemExpenses (item){ // listo todos los movimientos 'Expenses'
             if(item.type === 'Expenses'){
                 return true
             }
             return false
         }
 
+        //obtengo los montos ingresados de cada array para sumarlos
         const itemsIncome = allItems.filter(filterItemIncome);
         setIncome(itemsIncome.map((item) => (item.amount)).reduce((amount, value) => amount + value))
         
         const itemExpenses = allItems.filter(filterItemExpenses);
         setExpenses(itemExpenses.map((item) => (item.amount)).reduce((amount, value) => amount + value))
         
-    };
 
-    function setCurrentBalance () {
-        setBalance(income - expenses)
-    };
+        //resto los totales para obtener el balance. 
+        //Falta que no inicie en 0
+        //Falta que se actualice en tiempo real(no se actualiza al agregar o eliminar un movimiento) 
+        const currentBalance = (a, b) =>{
+            setBalance(a - b)
+        }
+        currentBalance(income, expenses);
+    };   
+    
 
     console.log(income);
     console.log(expenses);

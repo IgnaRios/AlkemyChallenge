@@ -47,7 +47,7 @@ const Formulario =  ({fetching, setFetching}) => {
 
     return(
         <Container>
-            <Form >
+            <Form > {/*No puedo limpiar el formulario una vez que envío la info */}
                 <Row>
                     <InputConcept concept={concept} setConcept={setConcept} />
                 </Row>
