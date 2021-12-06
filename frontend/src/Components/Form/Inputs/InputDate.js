@@ -5,7 +5,8 @@ import {  Col, Form, FloatingLabel } from 'react-bootstrap';
 const InputDate = ({date, setDate}) =>{
 
     const dateHandler = (e) =>{
-        setDate(e.target.value)
+        setDate(e.target.value);
+        console.log(e.target.value);
     };
 
     return(

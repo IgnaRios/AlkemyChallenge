@@ -9,7 +9,7 @@ const controllerUserList = async (req, res) =>{
             throw new Error ('No hay usuarios registrados todavía');
         };
 
-        res.status(200).send({'Lista ': list})
+        res.status(200).send({'Lista':list})
     }
     catch(error){
         console.error(error.message);

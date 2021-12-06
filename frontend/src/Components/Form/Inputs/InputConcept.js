@@ -5,6 +5,7 @@ const InputConcept = ({concept, setConcept}) => {
     
     const conceptHandler = (e) =>{
         setConcept(e.target.value);
+        console.log(e.target.value);
     };
     
     return (

@@ -13,7 +13,7 @@ const endpoint = 'item';
 const Formulario =  ({fetching, setFetching}) => {
 
     const [concept, setConcept] = useState('');
-    const [amount, setAmount]= useState('');    
+    const [amount, setAmount]= useState(0);    
     const [date, setDate] = useState('');
     const [type, setType] = useState('');
     const [user, setUser]= useState('');
@@ -37,17 +37,25 @@ const Formulario =  ({fetching, setFetching}) => {
                // console.log(addItem.data)
             };
             setFetching(false)
-        
+            
+            const cleanInput = () =>{
+                setConcept('');
+                setAmount(0);
+                setDate('');
+                setType('');
+                setUser('');
+            };
+
+            cleanInput();
         }
         catch(error){
             console.error({'Error' :error.response.data.Error})
         }
-
     };
 
     return(
         <Container>
-            <Form > {/*No puedo limpiar el formulario una vez que envío la info */}
+            <Form >
                 <Row>
                     <InputConcept concept={concept} setConcept={setConcept} />
                 </Row>
@@ -55,7 +63,7 @@ const Formulario =  ({fetching, setFetching}) => {
                     <InputAmount amount={amount} setAmount={setAmount}  />
                     <InputDate date={date} setDate={setDate} />
                     <InputSelectType type={type} setType={setType} />
-                    <InputSelectUser user={user} setUser={setUser} />
+                    <InputSelectUser setUser={setUser} />
                     <Col md={2} className='mt-1' >
                         <Button variant="primary" size='lg' type="submit" onClick={submitHandler}>
                             Submit

@@ -5,6 +5,7 @@ const InputSelectType = ({type, setType}) =>{
 
     const typeHandler = (e) =>{
         setType(e.target.value)
+        console.log(e.target.value)
     };
     return(
         <Col md={2}>

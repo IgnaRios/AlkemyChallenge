@@ -4,7 +4,8 @@ import React from 'react';
 const InputAmount = ({amount, setAmount}) =>{
     
     const amountHandler = (e) => {
-        setAmount(e.target.value)
+        setAmount(e.target.value);
+        console.log(e.target.value)
     };
         
     return(
