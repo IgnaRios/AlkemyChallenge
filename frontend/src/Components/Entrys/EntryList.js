@@ -1,9 +1,7 @@
 import React, {useState, useEffect } from "react";
 import axios from 'axios';
 import {ListGroup, Button, Row, Col, Container} from 'react-bootstrap';
-
-const BASE_URL = 'http://localhost:8000';
-const endpoint = 'item';
+import {enviroment} from '../../Constants/';
 
 const EntryList = ({fetching}) => {
     
@@ -11,12 +9,12 @@ const EntryList = ({fetching}) => {
     
     useEffect(()=>{
         getAllItems();
-        
+        EntryList();
     },[fetching]);
     
     const getAllItems = async () => {
         try{
-            const allEntrys = await axios.get(`${BASE_URL}/${endpoint}`);
+            const allEntrys = await axios.get(`${enviroment.BASE_URL}/${enviroment.ENDPOINT_ITEM}`);
             
             const entry = allEntrys.data.Listado;
             
@@ -39,7 +37,7 @@ const EntryList = ({fetching}) => {
             };
         }
         catch(error){
-        console.error(error.data);
+        console.error({'Error' :error.response.data.Error});
         };
     };
     
@@ -49,7 +47,7 @@ const EntryList = ({fetching}) => {
         try{
             const itemID = e.target.attributes[0].value;
             
-            const deleteItem = await axios.delete(`${BASE_URL}/${endpoint}/${itemID}`);
+            const deleteItem = await axios.delete(`${enviroment.BASE_URL}/${enviroment.ENDPOINT_ITEM}/${itemID}`);
 
             getAllItems(); // llamo la función para volver a cargar los movimientos
         }
@@ -63,7 +61,9 @@ const EntryList = ({fetching}) => {
         
         return(
             <ListGroup as='ul' className='mt-3' >
-                {list.map((item, index)=>(
+                {list.length === 0 
+                    ? <h4 className='text-center'>No hay nada Cargado</h4> 
+                    : list.map((item, index)=>(
                     <ListGroup.Item as='li' key={index}>
                         <Row className='text-center'>
                             <Col>

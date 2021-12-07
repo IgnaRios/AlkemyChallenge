@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import { Col, Form, FloatingLabel } from 'react-bootstrap';
-const BASE_URL = 'http://localhost:8000';
-const endpoint = 'user';
+import {enviroment} from '../../../Constants';
 
 const InputSelectUser = ({setUser}) => {
 
@@ -16,7 +15,7 @@ const InputSelectUser = ({setUser}) => {
     const userList = async () =>{
 
         try{
-            const getUsers = await axios.get(`${BASE_URL}/${endpoint}`)
+            const getUsers = await axios.get(`${enviroment.BASE_URL}/${enviroment.ENDPOINT_USER}`)
             
             const getUserAlias = getUsers.data.Lista;
          
@@ -25,13 +24,12 @@ const InputSelectUser = ({setUser}) => {
             }
         }
         catch(error){
-            console.error(error.data)
+            console.error({'Error' :error.response.data.Error})
         }
     }
     
     const userHandler = (e) =>{
         setUser(e.target.value);
-        console.log(e.target.value)
     };
     //mapear todos los usuarios registrados para desplegarlos en al lista de opciones
     return(

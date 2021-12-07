@@ -6,9 +6,7 @@ import InputAmount from './Inputs/inputAmount';
 import InputDate from './Inputs/InputDate';
 import InputSelectType from './Inputs/InputSelectType';
 import InputSelectUser from './Inputs/inputSelectUser';
-
-const BASE_URL = 'http://localhost:8000';
-const endpoint = 'item';
+import {enviroment} from '../../Constants/';
 
 const Formulario =  ({fetching, setFetching}) => {
 
@@ -31,10 +29,10 @@ const Formulario =  ({fetching, setFetching}) => {
 
         try{ 
             setFetching(true); 
-            const addItem = await axios.post(`${BASE_URL}/${endpoint}`, item)
+            const addItem = await axios.post(`${enviroment.BASE_URL}/${enviroment.ENDPOINT_ITEM}`, item)
             
             if(addItem.status === 200){
-               // console.log(addItem.data)
+                console.log(addItem.data)
             };
             setFetching(false)
             

@@ -6,7 +6,6 @@ const InputDate = ({date, setDate}) =>{
 
     const dateHandler = (e) =>{
         setDate(e.target.value);
-        console.log(e.target.value);
     };
 
     return(
